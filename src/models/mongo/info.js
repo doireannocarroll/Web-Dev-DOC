@@ -6,7 +6,7 @@ const infoSchema = new Schema({
   address: String,
   county: String,
   vinylRarity: String,
-  shopNameid: {
+  shopid: {
     type: Schema.Types.ObjectId,
     ref: "ShopName",
   },
