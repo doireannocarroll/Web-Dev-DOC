@@ -25,8 +25,7 @@ export const seedData = {
     goldenDiscs: {
       title: "Golden Discs",
       userid: "->users.bart"
-    }
-  },
+    },
   luca: {
     title: "Luca Records",
     userid: "->users.marge"
@@ -39,6 +38,7 @@ export const seedData = {
     title: "Hobby Horse Records",
     userid: "->users.bart"
   },
+  },
   infos: {
     _model: "Info",
     info_1: {
@@ -46,8 +46,7 @@ export const seedData = {
       county: "Wexford",
       vinylRarity: "Common/Recently Released",
       shopid: "->shops.goldenDiscs"
-    }
-  },
+    },
   info_2: {
     address: "Main Street",
     county: "Waterford",
@@ -65,5 +64,6 @@ export const seedData = {
   county: "Wexford",
   vinylRarity: "Rare",
   shopid: "->shops.southeast"
+},
 },
 };
