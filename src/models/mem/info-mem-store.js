@@ -1,33 +1,33 @@
 import { v4 } from "uuid";
 
-let shopInfo = [];
+let infos = [];
 
-export const shopInfoMemStore = {
-  async getAllShopInfo() {
-    return shopInfo;
+export const infoMemStore = {
+  async getAllInfos() {
+    return infos;
   },
 
-    async addShopInfo(shopNameId, info) {
+    async addInfo(shopId, info) {
     info._id = v4();
-    info.shopNameId = shopNameId;
-    shopInfo.push(info);
+    info.shopId = shopId;
+    infos.push(info);
     return info;
     },
 
-    async getInfoByShopNameId(shopNameId) {
-        return shopInfo.filter((info) => info.shopNameId === shopNameId);
+    async getInfoByShopNameId(shopId) {
+        return infos.filter((info) => info.shopId === shopId);
     },
 
     async getInfoById(id) {
-        return shopInfo.find((info) => info._id === id);
+        return infos.find((info) => info._id === id);
     },
 
-    async getShopInfo(shopNameId) {
-        return shopInfo.filter((info) => info.shopNameId === shopNameId);
+    async getShopInfo(shopId) {
+        return infos.filter((info) => info.shopId === shopId);
     },
 
     async deleteAllInfo () {
-        shopInfo = [];
+        infos = [];
     },
 
     async updateInfo(info, updatedInfo) {

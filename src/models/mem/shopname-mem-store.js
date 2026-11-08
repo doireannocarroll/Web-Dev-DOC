@@ -1,9 +1,9 @@
 import { v4 } from "uuid";  
-import { shopInfoMemStore } from "./info-mem-store.js";
+import { infoMemStore } from "./info-mem-store.js";
 
 let shopName = [];
 
-export const shopNameMemStore = {
+export const shopStore = {
   async getAllShopName() {
     return shopName;
   },

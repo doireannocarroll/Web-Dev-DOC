@@ -1,35 +1,44 @@
-import { ShopSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
+import { ShopSpec } from "../models/joi-schemas.js";
 
 export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const shopNames = await db.shopNameMemStore.getUserAddedShops(loggedInUser._id);
+      const shops = await db.shopStore.getUserShops(loggedInUser._id);
       const viewData = {
-        title: "Playtime Dashboard",
+        title: "RecordPin Dashboard",
         user: loggedInUser,
-        shopNames: shopNames,
+        shops: shops,
       };
       return h.view("dashboard", viewData);
     },
   },
 
-  addShop: {
+  addshop: {
+    validate: {
+      payload: ShopSpec,
+      options: { abortEarly: false },
+      failAction: async function (request, h, error) {
+        const loggedInUser = request.auth.credentials;
+        const shops = await db.shopStore.getUserShops(loggedInUser._id);
+        return h.view("dashboard", { title: "Add Shop Error", user: loggedInUser, shops: shops, errors: error.details }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       const newShop = {
         userid: loggedInUser._id,
         title: request.payload.title,
       };
-      await db.shopinfo.addShop(newShop);
+      await db.shopStore.addshop(newShop);
       return h.redirect("/dashboard");
     },
   },
-  deleteShop: {
+  deleteshop: {
     handler: async function (request, h) {
-      const shop = await db.shopNameMemStore.getShopNameById(request.params.id);
-      await db.shopNameMemStore.deleteShopNameById(shop._id);
+      const shop = await db.shopStore.getShopById(request.params.id);
+      await db.shopStore.deleteShopById(shop._id);
       return h.redirect("/dashboard");
     },
   },

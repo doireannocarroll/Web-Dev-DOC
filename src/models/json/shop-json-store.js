@@ -5,10 +5,10 @@ import { infoJsonStore } from "./info-json-store.js";
 export const shopJsonStore = {
   async getAllShops() {
     await db.read();
-    return db.data.shopsName;
+    return db.data.shopName;
   },
 
-  async addShop(shop) {
+  async addshop(shop) {
     await db.read();
     shop._id = v4();
     db.data.shops.push(shop);

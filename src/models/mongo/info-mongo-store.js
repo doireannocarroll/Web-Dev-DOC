@@ -1,7 +1,8 @@
+import Mongoose from "mongoose";
 import { Info } from "./info.js";
 
 export const infoMongoStore = {
-  async getAllInfo(id) {
+  async getAllInfos() {
     const info = await Info.find().lean();
     return info;
   },
@@ -28,7 +29,7 @@ export const infoMongoStore = {
       return null;
   
     },
-   async deleteInfo(id) {
+   async deleteInfoById(id) {
     try {
       await Info.deleteOne({ _id: id});
     } catch (error) {

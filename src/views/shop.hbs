@@ -1,9 +1,14 @@
 {{> menu}}
 
-<section class="section">
+<section class="section columns is-vcentered">
+  <div class="column has-text-centered">
     <div class="title">
-        {{shopinfo.title}}
+      {{shop.title}}
     </div>
     {{> list-info}}
     {{> add-info}}
+  </div>
+  <div class="column">
+    {{> shop-image }}
+  </div>
 </section>

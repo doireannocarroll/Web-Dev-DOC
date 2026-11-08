@@ -1,5 +1,6 @@
 import Mongoose from "mongoose";
 import { Shop } from "./shop.js";
+import { infoMongoStore } from "./info-mongo-store.js";
 
 export const shopMongoStore = {
   async getAllShops() {
@@ -11,14 +12,14 @@ export const shopMongoStore = {
     if (Mongoose.isValidObjectId(id)) {
       const shop = await Shop.findOne({ _id: id }).lean();
       if (shop) {
-        shop.tracks = await infoMongoStore.getInfoByShopId(shop._id);
+        shop.infos = await infoMongoStore.getInfoByShopId(shop._id);
       }
       return shop;
     }
     return null;
   },
 
-  async addShop(shop) {
+  async addshop(shop) {
     const newShop = new Shop(shop);
     const shopObj = await newShop.save();
     return this.getShopById(shopObj._id);
@@ -39,5 +40,12 @@ export const shopMongoStore = {
 
   async deleteAllShops() {
     await Shop.deleteMany({});
+  },
+
+  async updateShop(updatedShop) {
+    const shop = await Shop.findOne({ _id: updatedShop._id });
+    shop.title = updatedShop.title;
+    shop.image = updatedShop.image;
+    await shop.save();
   }
 };

@@ -25,7 +25,7 @@ export const infoJsonStore = {
     return db.data.info.find((info) => info._id === id);
   },
 
-  async deleteInfo(id) {
+  async deleteinfo(id) {
     await db.read();
     const index = db.data.info.findIndex((info) => info._id === id);
     db.data.info.splice(index, 1);

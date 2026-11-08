@@ -1,6 +1,6 @@
 import { userMemStore } from "./mem/user-mem-store.js";
-import { shopNameMemStore } from "./mem/shopname-mem-store.js";
-import { shopInfoMemStore } from "./mem/info-mem-store.js";
+import { shopStore } from "./mem/shopname-mem-store.js";
+import { infoMemStore } from "./mem/info-mem-store.js";
 import { userJsonStore } from "./json/user-json-store.js";
 import { shopJsonStore } from "./json/shop-json-store.js";
 import { infoJsonStore } from "./json/info-json-store.js";
@@ -29,8 +29,8 @@ export const db = {
             break;
         default:
             this.userStore = userMemStore;
-            this.shopStore = shopNameMemStore;
-            this.infoStore = shopInfoMemStore;
+            this.shopStore = shopStore;
+            this.infoStore = infoMemStore;
     }
 
   },
